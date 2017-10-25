@@ -7,20 +7,14 @@ $ git clone https://github.com/johannestretton37/react-template-generator.git
 $ cd react-template-generator
 $ npm install
 ```
-
-Copy the `reactGenerator` folder into your local bin
+Create start script
 ```bash
-$ cp -r reactGenerator ~/bin/
+$ echo "node ~/bin/reactGenerator/ \"\$1\"" >> reactGenerator/run.sh
 ```
-
-Make the start script executable
+Add a symlink and make the start script executable
 ```bash
-$ chmod u+x ~/bin/reactGenerator/run.sh
-```
-
-Add a symlink
-```bash
-$ ln ~/bin/reactGenerator/run.sh /usr/local/bin/rg
+$ ln reactGenerator/run.sh /usr/local/bin/rg
+$ chmod u+x reactGenerator/run.sh
 ```
 **NOTE:** Feel free to name the symlink how you want. I used `rg` in the example above (short for React Generator).
 
@@ -31,7 +25,7 @@ This will create a folder named **ComponentName** with a simple react template c
 $ rg ComponentName
 ```
 
-You can specify a path if you want. Any non existing folders will be automatically created.
+You can specify a path if you want, relative to your current directory. Any non existing folders will be automatically created.
 ```bash
 $ rg path/to/ComponentName
 ```
