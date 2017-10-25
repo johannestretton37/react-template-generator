@@ -1,12 +1,12 @@
 # React Component Template Generator
 
 ## Install
-Copy this entire dir into your local bin
+Clone repo and copy the `reactGenerator` folder into your local bin
 ```bash
 cp -r reactGenerator ~/bin/
 ```
 
-Make the script executable
+Make the start script executable
 ```bash
 chmod u+x ~/bin/reactGenerator/run.sh
 ```
