@@ -1,29 +1,39 @@
 const fs = require('fs');
+const fx = require('mkdir-recursive');
 const path = require('path');
 
 const args = process.argv.slice(2);
 const suggestedName = args[0];
-if (suggestedName == '' || null || undefined) {
+
+if (suggestedName == '' || suggestedName == null || suggestedName == undefined) {
+  console.log("ERROR: You must provide a component name as first argument.");
+  console.log("Example: rg relative/path/to/YourComponentName");
   process.exit(0);
 }
 
+
+let dirPath = '';
 let componentName = suggestedName;
-if (suggestedName[0].toUpperCase() !== suggestedName[0]) {
-  componentName = suggestedName[0].toUpperCase() + suggestedName.substring(1);
+let filePath = path.parse(suggestedName);
+if (filePath.dir !== '') {
+  dirPath = filePath.dir;
+  componentName = filePath.name;
 }
 
-console.log('This will generate a React component folder named:', componentName);
+if (componentName[0].toUpperCase() !== componentName[0]) {
+  componentName = componentName[0].toUpperCase() + componentName.substring(1);
+}
 
-const folderName = componentName;
+console.log('This will generate a React component folder named:', dirPath, dirPath !== '' ? '/' : '', componentName);
 
 const indexFileContent = `import ${componentName} from './${componentName}'
 export default ${componentName}
 `
 
-const compFileContent = `import React from 'react'
+const compFileContent = `import React, { Component } from 'react'
 import './${componentName}.css'
 
-class ${componentName} extends React.Component {
+class ${componentName} extends Component {
   render() {
     return (
       <div>
@@ -50,23 +60,30 @@ const files = [
   },
 ];
 
-// Create folder
-try {
-  fs.mkdirSync(folderName);
-} catch (err) {
-  if (err.code !== 'EEXIST') throw err;
+function createFiles() {
+  let filesCreated = 0;
+  // Create files
+  for (let i in files) {
+    let file = files[i];
+    fs.writeFile(path.join(dirPath, file.name), file.content, (err) => {
+      if (err) throw err;
+      console.log(`Created ${path.join(dirPath, file.name)}`);
+      filesCreated++;
+      if (filesCreated == files.length) {
+        console.log(`React component ${componentName} successfully created.`)
+      }
+    })
+  }  
 }
 
-let filesCreated = 0;
-// Create files
-for (let i in files) {
-  let file = files[i];
-  fs.writeFile(path.join(folderName, file.name), file.content, (err) => {
+// Create folder and files
+if (dirPath == '') {
+  createFiles();
+} else {
+  fx.mkdir(dirPath, function(err) {
     if (err) throw err;
-    console.log(`Created ${folderName}/${file.name}`);
-    filesCreated++;
-    if (filesCreated == files.length) {
-      console.log(`React component ${componentName} successfully created.`)
-    }
-  })
+    createFiles()
+  });
 }
+
+
