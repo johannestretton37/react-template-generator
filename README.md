@@ -1,8 +1,14 @@
 # React Component Template Generator
 
 ## Install
-Clone repo and copy the `reactGenerator` folder into your local bin
+Clone repo
 ```bash
+git clone https://github.com/johannestretton37/react-template-generator.git
+```
+
+Copy the `reactGenerator` folder into your local bin
+```bash
+cd react-template-generator
 cp -r reactGenerator ~/bin/
 ```
 
@@ -15,10 +21,12 @@ Add a symlink
 ```bash
 ln ~/bin/reactGenerator/run.sh /usr/local/bin/rg
 ```
+**NOTE:** Feel free to name the symlink how you want. I used `rg` in the example above (short for React Generator).
 
 ## Run
-Execute this script from the folder where you want to generate the React Component
+Execute the script from the folder where you want to generate the React Component.
+This will create a folder named **ComponentName** with a simple react template class.
 ```bash
-rg YourReactComponentName
+rg ComponentName
 ````
 
