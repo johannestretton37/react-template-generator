@@ -9,7 +9,7 @@ $ npm install
 ```
 Create start script
 ```bash
-$ echo "node ~/bin/reactGenerator/ \"\$1\"" >> reactGenerator/run.sh
+$ echo "node \${PWD}/reactGenerator/ \"\$1\"" >> reactGenerator/run.sh
 ```
 Add a symlink and make the start script executable
 ```bash
