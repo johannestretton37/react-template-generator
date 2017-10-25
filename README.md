@@ -1,14 +1,15 @@
 # React Component Template Generator
 
 ## Install
-Clone repo
+Clone repo and install dependencies
 ```bash
 $ git clone https://github.com/johannestretton37/react-template-generator.git
+$ cd react-template-generator
+$ npm install
 ```
 
 Copy the `reactGenerator` folder into your local bin
 ```bash
-$ cd react-template-generator
 $ cp -r reactGenerator ~/bin/
 ```
 
