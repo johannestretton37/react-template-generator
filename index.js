@@ -93,26 +93,31 @@ function createComponent() {
   // Create folder
   fx.mkdir(dirPath, function(err) {
     if (err) throw err;
+    console.log('Created dir ' + dirPath)
+
+    let filesCreated = 0;
+    // Create files
+    for (let i in files) {
+      let file = files[i];
+      let filePath = path.join(dirPath, file.name);
+      if (fs.existsSync(filePath)) {
+        console.log(`- ERROR: The file ${filePath} already exists. Delete it and run the command again or choose another name for your component.`);
+        break;
+      }
+      console.log(__dirname)
+      console.log("Try to create file " + filePath)
+      fs.writeFile(filePath, file.content, (err) => {
+        if (err) throw err;
+        console.log(`Created ${filePath}`);
+        filesCreated++;
+        if (filesCreated == files.length) {
+          console.log(`React component ${componentName} successfully created.`)
+        }
+      })
+    }  
+
   });
   
-  let filesCreated = 0;
-  // Create files
-  for (let i in files) {
-    let file = files[i];
-    let filePath = path.join(dirPath, file.name);
-    if (fs.existsSync(filePath)) {
-      console.log(`- ERROR: The file ${filePath} already exists. Delete it and run the command again or choose another name for your component.`);
-      break;
-    }
-    fs.writeFile(filePath, file.content, (err) => {
-      if (err) throw err;
-      console.log(`Created ${filePath}`);
-      filesCreated++;
-      if (filesCreated == files.length) {
-        console.log(`React component ${componentName} successfully created.`)
-      }
-    })
-  }  
 }
 
 
