@@ -1,26 +1,21 @@
 # React Component Template Generator
 
 ## Install
-Clone repo and install dependencies
+Clone repo and install dependencies. __You need to have **yarn** installed__
 ```bash
 $ git clone https://github.com/johannestretton37/react-template-generator.git
-$ cd react-template-generator
-$ npm install
-```
-
-Install dependencies
-```bash
-yarn
+$ cd reactGenerator/
+$ yarn
 ```
 
 Create a symlink
 ```bash
-yarn link
+$ yarn link
 ```
 
 Make the app executable
 ```bash
-chmod +x index.js
+$ chmod +x index.js
 ```
 
 ## Usage
