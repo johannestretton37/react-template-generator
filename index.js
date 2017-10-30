@@ -57,24 +57,24 @@ function createComponent() {
   }
   
   const indexFileContent = `import ${componentName} from './${componentName}'
-  export default ${componentName}
-  `
+export default ${componentName}
+`
   
   const compFileContent = `import React, { Component } from 'react'
-  import './${componentName}.css'
+import './${componentName}.css'
   
-  class ${componentName} extends Component {
-    render() {
-      return (
-        <div>
-          
-        </div>
-      )
-    }
+class ${componentName} extends Component {
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
   }
-  
-  export default ${componentName};
-  `
+}
+
+export default ${componentName};
+`
   const files = [
     {
       name: 'index.js',
@@ -104,8 +104,6 @@ function createComponent() {
         console.log(`- ERROR: The file ${filePath} already exists. Delete it and run the command again or choose another name for your component.`);
         break;
       }
-      console.log(__dirname)
-      console.log("Try to create file " + filePath)
       fs.writeFile(filePath, file.content, (err) => {
         if (err) throw err;
         console.log(`Created ${filePath}`);
