@@ -11,6 +11,7 @@
   "preferGlobal": true,
   "bin": "./index.js",
   "dependencies": {
-    "mkdir-recursive": "^0.3.0"
+    "mkdir-recursive": "^0.3.0",
+    "prompt": "^1.0.0"
   }
 }
