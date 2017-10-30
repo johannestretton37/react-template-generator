@@ -37,9 +37,6 @@ if (filePath.dir !== '') {
         }
       }
     }, (err, result) => {
-      //
-      // Log the results.
-      //
       console.log('*  Saving default path: ' + filePath.dir);
       fs.writeFileSync(configFilePath, filePath.dir, { encoding: 'utf-8' });
       createComponent();
@@ -58,8 +55,6 @@ function createComponent() {
   if (componentName[0].toUpperCase() !== componentName[0]) {
     componentName = componentName[0].toUpperCase() + componentName.substring(1);
   }
-  
-  console.log('This will generate a React component folder named:', dirPath, dirPath !== '' ? '/' : '', componentName);
   
   const indexFileContent = `import ${componentName} from './${componentName}'
   export default ${componentName}
@@ -104,9 +99,14 @@ function createComponent() {
   // Create files
   for (let i in files) {
     let file = files[i];
-    fs.writeFile(path.join(dirPath, file.name), file.content, (err) => {
+    let filePath = path.join(dirPath, file.name);
+    if (fs.existsSync(filePath)) {
+      console.log(`- ERROR: The file ${filePath} already exists. Delete it and run the command again or choose another name for your component.`);
+      break;
+    }
+    fs.writeFile(filePath, file.content, (err) => {
       if (err) throw err;
-      console.log(`Created ${path.join(dirPath, file.name)}`);
+      console.log(`Created ${filePath}`);
       filesCreated++;
       if (filesCreated == files.length) {
         console.log(`React component ${componentName} successfully created.`)
