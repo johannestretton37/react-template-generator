@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 
@@ -11,8 +14,6 @@ let componentName = suggestedName;
 if (suggestedName[0].toUpperCase() !== suggestedName[0]) {
   componentName = suggestedName[0].toUpperCase() + suggestedName.substring(1);
 }
-
-console.log('This will generate a React component folder named:', componentName);
 
 const folderName = componentName;
 
