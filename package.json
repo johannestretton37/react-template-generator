@@ -9,5 +9,8 @@
   "author": "Johannes Borgström",
   "license": "ISC",
   "preferGlobal": true,
-  "bin": "./index.js"
+  "bin": "./index.js",
+  "dependencies": {
+    "mkdir-recursive": "^0.3.0"
+  }
 }
