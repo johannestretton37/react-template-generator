@@ -88,6 +88,10 @@ export default ${componentName};
       name: componentName + '.scss',
       content: ''
     },
+    {
+      name: componentName + '.css',
+      content: ''
+    },
   ];
   
   // Create folder
