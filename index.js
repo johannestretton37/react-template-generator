@@ -73,7 +73,7 @@ class ${componentName} extends Component {
   }
 }
 
-export default ${componentName};
+export default ${componentName}
 `
   const files = [
     {
